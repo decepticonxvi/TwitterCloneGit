@@ -4,7 +4,6 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "npm test",
     "server": "nodemon app.js"
   },
   "author": "",
