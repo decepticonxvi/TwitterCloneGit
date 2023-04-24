@@ -1,0 +1,14 @@
+extends layouts/main-layout.pug
+
+block content  
+    .tabsContainer#notificationID(data-selectedTab=selectedTab, data-lastGm=lastGm)
+        +createTab("Engagement", `/notifications/Engagement`, selectedTab != "Recruitment")
+        +createTab("Recruitment", `/notifications/Recruitment`, selectedTab == "Recruitment")
+    .resultsContainer
+
+block headerButton
+    button#markNotificationsAsRead
+        i.fas.fa-check-double
+
+block scripts
+    script(src="/js/notificationsPage.js")

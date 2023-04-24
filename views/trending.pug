@@ -1,0 +1,19 @@
+extends layouts/main-layout.pug
+
+block content
+    .matchmaking-popup(style="visibility: hidden")
+        .matchmaking-message Matchmaking in progress...
+        .matchmaking-countdown 30
+    .tabsContainer#tabID(data-selectedTab=selectedTab)
+        +createTab("Today", `/trending/today`, selectedTab !== "yestarday" && selectedTab !== "2daysago")
+        +createTab("Yestarday", `/trending/yestarday`, selectedTab == "yestarday")
+        +createTab("2 Days ago", `/trending/2daysago`, selectedTab == "2daysago")
+    .postsContainer
+    +createPostModals(userLoggedIn)
+
+block headerButton
+    button.AutoMatch Auto Match
+        i.far.fa-plus-square
+
+block scripts
+    script(src="/js/trending.js")

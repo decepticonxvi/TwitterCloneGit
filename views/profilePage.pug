@@ -1,0 +1,71 @@
+extends layouts/main-layout.pug
+
+block content 
+    if !profileUser
+        span.errorMessage Check the url you are trying to access
+    else
+        script.
+            var profileUserId = '!{profileUser._id}';
+            var selectedTab = '!{selectedTab}';
+        - followersCount = profileUser.followers.length
+        - followingCount = profileUser.following.length
+        - rankSystem ={  0: 'Bronze I',1: 'Bronze II',2: 'Bronze III',3: 'Bronze IV', 4: 'Silver I',5: 'Silver II',6: 'Silver III',7: 'Silver IV', 8: 'Gold I',9: 'Gold II',10: 'Gold III',11: 'Gold IV', 12: 'Platinum  I',13: 'Platinum  II',14: 'Platinum  III',15: 'Platinum  IV', 16: 'Diamond I',17: 'Diamond II',18: 'Diamond III',19: 'Diamond IV',20: 'Elite  I',21: 'Elite  II',22: 'Elite  III',23: 'Elite  IV'}
+        .matchmaking-popup(style="visibility: hidden")
+            .matchmaking-message Matchmaking in progress...
+            .matchmaking-countdown 30
+        .profileHeaderContainer
+            .coverPhotoSection
+                .coverPhotoContainer
+                    if profileUser.coverPhoto
+                        img(src=profileUser.coverPhoto, alt="User's cover photo")
+                    if profileUser._id == userLoggedIn._id
+                        button.coverPhotoButton(data-toggle="modal", data-target="#coverPhotoUploadModal")
+                            i.fas.fa-camera
+                .userImageContainer
+                    img(src=profileUser.profilePic, alt="User profile image")
+                    if profileUser.isOnline==true 
+                        span#roundPopOnline.active
+                    else 
+                        span#roundPopOnline.inactive
+                    if profileUser._id == userLoggedIn._id
+                        button.profilePictureButton(data-toggle="modal", data-target="#imageUploadModal")
+                            i.fas.fa-camera
+            .profileButtonsContainer
+                if profileUser._id != userLoggedIn._id
+                    a.profileButton(href=`/messages/${profileUser._id}`)
+                        i.fas.fa-envelope
+                    - var profileUserId = profileUser._id.toString();
+                    - if(userLoggedIn.following && userLoggedIn.following.includes(profileUserId))
+                        +createFollowButton(profileUser, true)
+                    - else
+                        +createFollowButton(profileUser, false)
+            .userDetailsContainer
+                span.displayName #{profileUser.firstName} #{profileUser.lastName}
+                span.username @#{profileUser.username}
+                .rank
+                    span.displayName Rank : #{rankSystem[profileUser.rank]}
+                    span.displayName Mode : #{profileUser.lastGameMode=="spectate"?"UltraWar":"Spectate"}
+
+                .followersContainer
+                    a(href=`/profile/${profileUser.username}/following`)
+                        //Lecture 143 Updating following/followers Count
+                        span.value #{followingCount}
+                        span Following
+                    a(href=`/profile/${profileUser.username}/followers`)
+                        //Lecture 143 Updating following/followers Count
+                        span#followersValue.value #{followersCount}
+                        span Followers
+        .tabsContainer
+            +createTab("Posts", `/profile/${profileUser.username}`, selectedTab != "replies")
+            +createTab("Replies", `/profile/${profileUser.username}/replies`, selectedTab == "replies")
+
+        .pinnedPostContainer
+        .postsContainer
+        +createPostModals(userLoggedIn)
+        +createImageUploadModal()
+        +createCoverPhotoUploadModal()
+  
+
+
+block scripts
+    script(src="/js/profile.js")

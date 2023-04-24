@@ -1,0 +1,79 @@
+extends layouts/main-layout.pug
+
+block content    
+    if errorMessage
+        span.errorMessage #{errorMessage}
+    else 
+        script.
+            var chatId = '!{chat._id}';
+        - chat = chat
+        - vs = chat.vs
+        - const timestampString =  chat.createdAt
+        - const timestamp = Date.parse(timestampString)
+        - const updatedTimestamp = new Date(timestamp + 10 * 60 * 1000)
+        - const currentTime = Date.now()
+        - const timeDiffInMs = updatedTimestamp - currentTime
+        - const timeDiffInSecs = Math.round(timeDiffInMs / 1000)
+        - const minsRemaining = Math.floor(timeDiffInSecs / 60)
+        - const secsRemaining = timeDiffInSecs % 60
+
+        .chatPageContainer
+            .chatTitleBarContainer
+                +createChatImage(chat, userLoggedIn)
+                span#chatName(data-toggle="modal", data-target="#chatNameModal")
+            if chat.gameMode == 'match'
+                .voteTitleBarContainer
+                    if (vs[0]._id==userLoggedIn._id ||vs[1]._id==userLoggedIn._id)
+                        button.buttonOne1(name='buttonOne',"disabled") #{chat.postId.oneContent} #{chat.userOne.length}
+                        span#timer(data-minutes=minsRemaining,data-seconds=secsRemaining) #{minsRemaining} #{secsRemaining}
+                        button.buttonTwo1(name='buttonTwo',"disabled") #{chat.postId.twoContent} #{chat.userTwo.length}
+                    else 
+                        button.buttonOne(name='buttonOne',"disabled") Vote #{chat.vs[0].firstName.substring(0, 6)}
+                            if(chat.userOne.length==0)
+                                span#roundPop #{chat.userOne.length}
+                            else 
+                                span#roundPop.active #{chat.userOne.length}
+                        span#timer(data-minutes=minsRemaining,data-seconds=secsRemaining) #{minsRemaining} #{secsRemaining}
+                        button.buttonTwo(name='buttonTwo',"disabled") Vote #{chat.vs[1].firstName.substring(0, 6)}
+                            if(chat.userTwo.length==0)
+                                span#roundPop #{chat.userTwo.length}
+                            else 
+                                span#roundPop.active #{chat.userTwo.length}
+                .resultContainer
+                    if (vs[0]._id==userLoggedIn._id ||vs[1]._id==userLoggedIn._id)
+                        if (vs[0]._id==userLoggedIn._id)
+                            if (chat.userOne.length==2)
+                                span.victory Victory
+                            if (chat.userTwo.length==2)
+                                span.defeat Defeat
+                            if (chat.userOne.length==1 && chat.userTwo.length==1)
+                                span.draw Deadlock
+                        else  
+                            if (chat.userTwo.length==2)
+                                span.victory Victory
+                            if (chat.userOne.length==2)
+                                span.defeat Defeat
+                            if (chat.userOne.length==1 && chat.userTwo.length==1)
+                                span.draw Deadlock  
+                    else 
+                        if (chat.userOne.length==2)
+                            span.victory Victory for #{vs[0].firstName}
+                        if (chat.userTwo.length==2) 
+                            span.victory Victory for #{vs[1].firstName}
+                        if(chat.userOne.length==1 && chat.userTwo.length==1)
+                            span.draw Deadlock
+            .mainContentContainer
+                .loadingSpinnerContainer
+                    img(src="/images/loadingSpinner.gif", alt="Loading spinner")
+                .chatContainer(style="visibility: hidden", data-room=chat._id)
+                    ul.chatMessages
+                    .typingDots
+                        img(src="/images/dots.gif", alt="Typing dots")
+                    .footer
+                        textarea.inputTextbox(name="messageInput", placeholder="Type a message...")
+                        button.sendMessageButton
+                            i.fas.fa-paper-plane
+        +createChatNameModal(chat)
+
+block scripts
+    script(src="/js/chatPage.js")

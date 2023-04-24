@@ -1,0 +1,14 @@
+extends layouts/main-layout.pug
+
+block content 
+    script.
+        var postId = '!{postId}'
+    .matchmaking-popup(style="visibility: hidden")
+        .matchmaking-message Matchmaking in progress...
+        .matchmaking-countdown 30
+    .postsContainer
+
+    +createPostModals(userLoggedIn)
+
+block scripts
+    script(src="/js/postPage.js")
