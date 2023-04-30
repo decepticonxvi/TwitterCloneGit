@@ -8,7 +8,7 @@ const mongoose = require("./database");
 const User = require("./Schemas/UserSchema");
 const Post = require("./Schemas/PostSchema");
 const Match = require("./Schemas/MatchSchema");
-const AutoMatch = require("./schemas/AutoMatchSchema");
+const AutoMatch = require("./Schemas/AutoMatchSchema");
 
 const session = require("express-session");
 
