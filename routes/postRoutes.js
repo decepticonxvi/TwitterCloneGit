@@ -3,7 +3,7 @@ const app = express();
 const router = express.Router();
 const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt");
-const User = require("../schemas/UserSchema");
+const User = require("../Schemas/UserSchema");
 
 router.get("/:id", (req, res, next) => {
   var payload = {

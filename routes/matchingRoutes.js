@@ -3,8 +3,8 @@ const app = express();
 const router = express.Router();
 const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt");
-const User = require("../schemas/UserSchema");
-const Chat = require("../schemas/ChatSchema");
+const User = require("../Schemas/UserSchema");
+const Chat = require("../Schemas/ChatSchema");
 const mongoose = require("mongoose");
 
 router.get("/", (req, res, next) => {

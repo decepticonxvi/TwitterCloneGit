@@ -2,13 +2,13 @@ const express = require("express");
 const app = express();
 const router = express.Router();
 const bodyParser = require("body-parser");
-const User = require("../../schemas/UserSchema");
-const Chat = require("../../schemas/ChatSchema");
+const User = require("../../Schemas/UserSchema");
+const Chat = require("../../Schemas/ChatSchema");
 const multer = require("multer");
 const upload = multer({ dest: "uploads/" });
 const path = require("path");
 const fs = require("fs");
-const Notification = require("../../schemas/NotificationSchema");
+const Notification = require("../../Schemas/NotificationSchema");
 const cloudinary = require("cloudinary");
 
 cloudinary.config({
@@ -267,7 +267,7 @@ router.put("/:id", async (req, res, next) => {
       console.log(error);
       return res.sendStatus(400);
     });
-    
+
     await Chat.findOne({
       _id: req.params.id,
     })

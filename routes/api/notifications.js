@@ -2,11 +2,11 @@ const express = require("express");
 const app = express();
 const router = express.Router();
 const bodyParser = require("body-parser");
-const User = require("../../schemas/UserSchema");
-const Post = require("../../schemas/PostSchema");
-const Chat = require("../../schemas/ChatSchema");
-const Message = require("../../schemas/MessageSchema");
-const Notification = require("../../schemas/NotificationSchema");
+const User = require("../../Schemas/UserSchema");
+const Post = require("../../Schemas/PostSchema");
+const Chat = require("../../Schemas/ChatSchema");
+const Message = require("../../Schemas/MessageSchema");
+const Notification = require("../../Schemas/NotificationSchema");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 

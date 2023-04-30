@@ -2,11 +2,11 @@ const express = require("express");
 const app = express();
 const router = express.Router();
 const bodyParser = require("body-parser");
-const User = require("../../schemas/UserSchema");
-const Post = require("../../schemas/PostSchema");
-const Notification = require("../../schemas/NotificationSchema");
-const Match = require("../../schemas/MatchSchema");
-const AutoMatch = require("../../schemas/AutoMatchSchema");
+const User = require("../../Schemas/UserSchema");
+const Post = require("../../Schemas/PostSchema");
+const Notification = require("../../Schemas/NotificationSchema");
+const Match = require("../../Schemas/MatchSchema");
+const AutoMatch = require("../../Schemas/AutoMatchSchema");
 const multer = require("multer");
 const upload = multer({ dest: "uploads/" });
 const cloudinary = require("cloudinary");
@@ -14,7 +14,7 @@ const { ObjectId } = require("mongodb");
 const mongoose = require("mongoose");
 
 const io = require("socket.io-client");
-const socket = io("http://localhost:3000");
+const socket = io("https://warsofdesire-decepticonxvi2.onrender.com/");
 
 cloudinary.config({
   cloud_name: "dlrximpgr",
