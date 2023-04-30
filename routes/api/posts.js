@@ -13,9 +13,6 @@ const cloudinary = require("cloudinary");
 const { ObjectId } = require("mongodb");
 const mongoose = require("mongoose");
 
-const io = require("socket.io-client");
-const socket = io("https://warsofdesire-decepticonxvi3.onrender.com/");
-
 cloudinary.config({
   cloud_name: "dlrximpgr",
   api_key: "249129813132953",
