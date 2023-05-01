@@ -1,12 +1,66 @@
 extends layouts/login-layout.pug
 
 block content
-    .loginContainer
-        h1 Login
-        form(method="post")
-            p.errorMessage #{errorMessage}
-
-            input(type="text", name="logUsername", placeholder="Username or email", value=111 required="")
-            input(type="password", name="logPassword", placeholder="Password",value=111 required="")
-            input(type="submit", value="Login")
-        a(href="/register") Need an account? Register here.
+    .login-screen.flex
+        .login-mangools
+            .login-mangools__bg--small.relative.flex.flex-col.items-center
+            // Shape
+            .flex.shape-top
+                svg#blobSvg.shape-top__big(viewbox='0 0 500 500' xmlns='http://www.w3.org/2000/svg' width='100%')
+                defs
+                    lineargradient#gradient(x1='0%' y1='0%' x2='0%' y2='100%')
+                    stop(offset='0%' style='stop-color: rgb(255, 95, 109)')
+                    stop(offset='100%' style='stop-color: rgb(255, 195, 113)')
+                path#blob(d='M429.5,291.5Q364,333,341.5,398.5Q319,464,249,466.5Q179,469,116.5,431Q54,393,71,321.5Q88,250,98.5,199Q109,148,142.5,84.5Q176,21,246,34Q316,47,352.5,98Q389,149,442,199.5Q495,250,429.5,291.5Z' fill='url(#gradient)')
+            // End Shape
+            .login-mangools__logo
+                img(src='' style='height: 2.25rem' alt='')
+                p.footer__text WOD:Wars Of Desire
+            h2 Welcome Back
+            .login-mangools__card
+                form.flex.flex-col(method="post")
+                    h1 #{errorMessage}
+                    .flex.flex-col.card__list(for='')
+                        span.card__label Enter Your email or Username
+                        label.relative(for='')
+                        span.absolute.card__icon
+                            svg(xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' aria-hidden='true' focusable='false' width='1em' height='1em' style='\
+                            -ms-transform: rotate(360deg);\
+                            -webkit-transform: rotate(360deg);\
+                            transform: rotate(360deg);\
+                            ' preserveaspectratio='xMidYMid meet' viewbox='0 0 36 36')
+                            path.clr-i-solid.clr-i-solid-path-1(d='M30.61 24.52a17.16 17.16 0 0 0-25.22 0a1.51 1.51 0 0 0-.39 1v6A1.5 1.5 0 0 0 6.5 33h23a1.5 1.5 0 0 0 1.5-1.5v-6a1.51 1.51 0 0 0-.39-.98z' fill='#626262')
+                            circle.clr-i-solid.clr-i-solid-path-2(cx='18' cy='10' r='7' fill='#626262')
+                            rect(x='0' y='0' width='36' height='36' fill='rgba(0, 0, 0, 0)')
+                        input.card__input(type="text", name="logUsername", placeholder="Username or email", value=111 required="")
+                    .flex.flex-col.card__list(for='')
+                        span.card__label Enter Your Password
+                        label.relative(for='')
+                        span.absolute.card__icon
+                            svg(xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' aria-hidden='true' focusable='false' width='1em' height='1em' style='\
+                            -ms-transform: rotate(360deg);\
+                            -webkit-transform: rotate(360deg);\
+                            transform: rotate(360deg);\
+                            ' preserveaspectratio='xMidYMid meet' viewbox='0 0 24 24')
+                            path(d='M20 12c0-1.103-.897-2-2-2h-1V7c0-2.757-2.243-5-5-5S7 4.243 7 7v3H6c-1.103 0-2 .897-2 2v8c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-8zM9 7c0-1.654 1.346-3 3-3s3 1.346 3 3v3H9V7z' fill='#626262')
+                        input.card__input(type="password", name="logPassword", placeholder="Password",value=111 required="")
+                    input.card__sign-in(type="submit", value="Login")
+                    .flex.justify-evenly
+                        a.card__url(href='/register') Don&apos;t have an account?
+                        a.card__url(href='') Forgot password?
+            // Shape
+            .flex.shape-bottom
+                svg#blobSvg.shape-bottom__small(viewbox='0 0 500 500' xmlns='http://www.w3.org/2000/svg' width='100%')
+                defs
+                    lineargradient#gradient(x1='0%' y1='0%' x2='0%' y2='100%')
+                    stop(offset='0%' style='stop-color: rgb(255, 95, 109)')
+                    stop(offset='100%' style='stop-color: rgb(255, 195, 113)')
+                path#blob(d='M408,303Q396,356,354.5,400Q313,444,257.5,421Q202,398,149,380Q96,362,65,306Q34,250,55,187Q76,124,124.5,68Q173,12,237.5,51Q302,90,355,112.5Q408,135,414,192.5Q420,250,408,303Z' fill='url(#gradient)')
+            // End Shape
+            .login-mangools__footer.flex.justify-between.items-start.w-full
+            a.flex.items-center.footer__link(href='')
+                .flex.justify-center.items-center.footer__box
+                img.footer__logo(src='' alt='')
+            a(href='')  Contact 
+            a(href='') Privacy Policy 
+            a(href='') Terms &amp; Conditions 

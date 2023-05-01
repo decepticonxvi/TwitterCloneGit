@@ -1,6 +1,8 @@
 var connected = false;
 
+// var socket = io("http://localhost:3000");
 var socket = io("https://warsofdesire-decepticonxvi3.onrender.com/");
+
 socket.emit("setup", userLoggedIn);
 
 socket.on("connected", () => (connected = true));

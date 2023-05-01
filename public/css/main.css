@@ -895,7 +895,8 @@ button span {
 }
 
 .resultListItem.active {
-  background-color: rgb(223 152 255 / 60%);
+  /* background-color: rgb(223 152 255 / 60%); */
+  background-image: radial-gradient(circle farthest-side, #fceabb, #00f87a);
 }
 
 .resultListItem.notification * {
@@ -1315,11 +1316,17 @@ label {
   margin-right: 10px;
   justify-content: space-around;
 }
-.green {
-  color: green;
+.greenOpponent {
+  background: #f58750;
+  color: white;
+  border-radius: 10px;
+  padding: 0 5px 0 5px;
 }
-.red {
-  color: red;
+.redSpectate {
+  color: white;
+  background: #bc7eeb;
+  border-radius: 10px;
+  padding: 0 5px 0 5px;
 }
 #roundPop {
   background-color: var(--red);

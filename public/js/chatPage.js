@@ -172,9 +172,9 @@ function createMessageHtml(message, nextMessage, lastSenderId) {
     if (!isMine) {
       if (message.chat.gameMode == "match") {
         if (message.chat.vs.includes(currentSenderId)) {
-          nameElement = `<span class='senderName green'>${senderName}</span>`;
+          nameElement = `<span class='senderName greenOpponent'>${senderName}</span>`;
         } else {
-          nameElement = `<span class='senderName red'>${senderName}</span>`;
+          nameElement = `<span class='senderName redSpectate'>${senderName}</span>`;
         }
       } else {
         nameElement = `<span class='senderName'>${senderName}</span>`;

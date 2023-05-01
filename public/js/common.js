@@ -1081,7 +1081,7 @@ function outputNotificationList(notifications, container) {
   });
 
   if (notifications.length == 0) {
-    container.append("<span class='noResults'>Nothing to show.</span>");
+    container.append("<span class='noResults'></span>");
   }
 }
 
